@@ -16,7 +16,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "校园志愿",
+    "navigationBarTitleText": "志愿者",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

@@ -34,11 +34,11 @@ export default {
     return {
       columns: [
         {
-          title: '学院',
+          title: '地区',
           key: 'department'
         },
         {
-          title: '班级',
+          title: '单位',
           key: 'class'
         },
         {
@@ -46,7 +46,7 @@ export default {
           key: 'name'
         },
         {
-          title: '学号',
+          title: '帐号',
           key: 'id'
         },
         {

@@ -4,7 +4,7 @@
       <Header class="layout-header">
         <Menu mode="horizontal" theme="primary" active-name="gravida">
           <div class="layout-logo">
-            <span style="font-size:22px;color:#fff;font-weight:bold; line-height:30px;">校园志愿</span>
+            <span style="font-size:22px;color:#fff;font-weight:bold; line-height:30px;">志愿者管理平台</span>
             <!-- <img :src="logo" class="logo"> -->
           </div>
           <div class="layout-drop">
@@ -100,7 +100,7 @@ export default {
 }
 
 .ivu-layout-header {
-  background: #58B957;
+  background: rgba(245, 40, 21, 0.794);
 }
 .logo{
   display: block;
@@ -110,7 +110,7 @@ export default {
 .layout-logo {
   width: 100px;
   height: 30px;
-  background: #58B957;
+  background: rgba(245, 40, 21, 0.794);
   border-radius: 3px;
   float: left;
   position: relative;

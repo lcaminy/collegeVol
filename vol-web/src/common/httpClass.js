@@ -8,7 +8,7 @@ export class Http {
   constructor (timeout = TIMEOUT) {
     this.Axios = axios.create({
     //   baseURL: 'http://47.102.128.138:8888/',
-      baseURL: 'http://www.lcaminy.com/',
+      baseURL: 'https://www.lcaminy.com/',
       timeout: timeout
     })
   }

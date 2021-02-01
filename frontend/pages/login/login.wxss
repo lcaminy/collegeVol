@@ -11,7 +11,7 @@
   height: 100%;
   background-size: cover;
   /* background-color: rgb(180, 238, 142); */
-  background-color: rgba(132, 192, 85, 0.932);
+  background-color: rgba(245, 40, 21, 0.794);
   /* background-image: url('http://www.shenqihl.club:8080/images/bgimg.jpg'); */
 }
 .top{
@@ -93,8 +93,8 @@ radio-group radio{
 }
 .btn-login{
   font-size: 14pt;
-  background-color: rgb(40, 168, 115);
-  color: #fff;
+  background-color: rgb(241, 245, 243);
+  color: rgb(246, 27, 27);
   height: 80rpx;
   line-height: 80rpx;
 }

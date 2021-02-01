@@ -3,7 +3,7 @@
 .top{
   height: 130rpx;
   width: 100%;
-  background-color: #77BB42;
+  background-color: rgba(245, 40, 21, 0.794);
 }
 .title{
   font-size: 45rpx;
@@ -46,7 +46,7 @@
   width: 260rpx;
   height: 190rpx;
   /* background-color: #3de19a; */
-  background-color: rgb(228, 245, 214);
+  background-color: rgba(245, 140, 130, 0.794);
   /*display: flex;
   flex-direction: column;
   justify-content: space-around;

@@ -13,12 +13,12 @@ Page({
     this.data.userPwd=e.detail.value;
   },
   getUserRole:function(e){
-    this.data.role = e.detail.value;
+    // this.data.role = e.detail.value;
   },
   login:function(e){
     var username = this.data.userId;
     var password = this.data.userPwd;
-    var role = this.data.role;
+    var role = 0;
     // if(role == 1) {
     //   wx.showToast({
     //     title: '管理员请通过后台登录',

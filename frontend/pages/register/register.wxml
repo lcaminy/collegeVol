@@ -2,19 +2,19 @@
 <text class='txt-head'>注册</text>
 <view class='box'>
   <view class='item item-first'>
-    <view class='inp-view'><input placeholder='学号' bindblur='stuIdBlur' bindinput='stuIdInput'></input></view>
-    <view><text wx:if="{{stuIdLen!=9}}" class='stuIdTip'>学号应为9位数!</text></view>
+    <view class='inp-view'><input placeholder='帐号' bindblur='stuIdBlur' bindinput='stuIdInput'></input></view>
+    <view><text wx:if="{{stuIdLen!=9}}" class='stuIdTip'>帐号应为9位数!</text></view>
   </view>
   <view class='item'>
     <view><input placeholder='姓名' bindinput='userName'></input></view>
     <view></view>
   </view>
   <view class='item'>
-    <view><input placeholder='院系' bindinput='userSchool'></input></view>
+    <view><input placeholder='地区' bindinput='userSchool'></input></view>
     <view></view>
   </view>
   <view class='item'> 
-    <view><input placeholder='班级' bindinput='userClass'></input></view>
+    <view><input placeholder='单位' bindinput='userClass'></input></view>
     <view></view>
   </view>
   <view class='item'>

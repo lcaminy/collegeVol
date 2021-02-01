@@ -2,7 +2,7 @@
   <Content :style="{margin: '24px',padding: '24px',background: '#fff'}">
     <Row style="margin-bottom:24px;">
       <Col span="6">
-        <Input search enter-button placeholder="请输入志愿者学号" />
+        <Input search enter-button placeholder="请输入志愿者帐号" />
       </Col>
     </Row>
     <Table border :columns="columns" :data="volunteers"></Table>
@@ -22,7 +22,7 @@ export default {
       count: 0,
       columns: [
         {
-          title: '学院',
+          title: '地区',
           key: 'userSchool',
           filters: [
             {
@@ -67,7 +67,7 @@ export default {
           }
         },
         {
-          title: '班级',
+          title: '单位',
           key: 'userClass',
           filters: [
             {
@@ -88,7 +88,7 @@ export default {
           key: 'userName'
         },
         {
-          title: '学号',
+          title: '帐号',
           key: 'stuId'
         },
         {

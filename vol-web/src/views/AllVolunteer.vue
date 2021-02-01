@@ -2,7 +2,7 @@
   <Content :style="{margin: '24px',padding: '24px',background: '#fff'}">
     <Row style="margin-bottom:24px;">
       <Col span="6">
-        <Input search enter-button placeholder="请输入志愿者学号" />
+        <Input search enter-button placeholder="请输入志愿者帐号" />
       </Col>
     </Row>
     <Table border :columns="columns" :data="volunteers"></Table>

@@ -10,7 +10,7 @@
   width: 580rpx;
   height: 90rpx;
   line-height: 90rpx;
-  background-color: #77BB42;
+  background-color: rgba(245, 40, 21, 0.794);
   margin: 0 auto;
   margin-top: 40rpx;
   align-items: center;
@@ -32,10 +32,10 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  border-bottom: 3rpx solid #77BB42;
+  border-bottom: 3rpx solid rgba(245, 40, 21, 0.794);
   align-items:center;
-  border-left:  solid 3rpx #77BB42;
-  border-right:  solid 3rpx #77BB42;
+  border-left:  solid 3rpx rgba(245, 40, 21, 0.794);
+  border-right:  solid 3rpx rgba(245, 40, 21, 0.794);
 
 }
 .snoTip{
@@ -47,7 +47,7 @@
 }
 
 .item-first{
-  border-top:  solid 3rpx #77BB42;
+  border-top:  solid 3rpx #e64340;
    border-top-left-radius: 10rpx;
    border-top-right-radius: 10rpx;
 }

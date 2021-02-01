@@ -7,7 +7,7 @@
               <Row type="flex" justify="center" align="bottom">
                 <i-col span="5" style="font-size:14px;">用户名：</i-col>
                 <i-col span="19" style="margin-top:30px;">
-                  <Input v-model="id" type="text" size="large" placeholder="请输入学号"/>
+                  <Input v-model="id" type="text" size="large" placeholder="请输入帐号"/>
                 </i-col>
               </Row>
               <Row type="flex" justify="center" align="bottom">

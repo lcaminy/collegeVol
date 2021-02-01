@@ -68,11 +68,11 @@ export default {
       isExpired: this.$route.params.expired,
       userColumns: [
         {
-          title: '学院',
+          title: '地区',
           key: 'userSchool'
         },
         {
-          title: '班级',
+          title: '单位',
           key: 'userClass'
         },
         {
@@ -80,7 +80,7 @@ export default {
           key: 'userName'
         },
         {
-          title: '学号',
+          title: '帐号',
           key: 'stuId'
         },
         {

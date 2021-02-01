@@ -3,7 +3,7 @@
 .top{
   height: 130rpx;
   width: 100%;
-  background-color: #77BB42;
+  background-color:  rgba(245, 40, 21, 0.794);
 }
 .logout-btn{
   width: 140rpx;
@@ -13,7 +13,7 @@
   margin-right: 30rpx;
   margin-top: 25rpx;
   border-radius: 10rpx;
-  background-color: rgba(57, 105, 21, 0.918);
+  background-color: rgba(255, 98, 7, 0.918);
   color: #fff;
 }
 .title{
