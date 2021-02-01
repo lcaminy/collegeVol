@@ -43,7 +43,7 @@ public interface EventMapper extends BaseMapper<Event> {
             "                                       (SELECT count(1) FROM event_apply b WHERE a.event_id = b.event_id) as num, \n" +
             "            (SELECT count(1) FROM event_like c WHERE a.event_id = c.event_id and  status ='00A') as likeNum \n" +
             "                                FROM `event` a  \n" +
-            "                                where a.status ='审核中' \n" +
+            "                                where a.status ='进行中' \n" +
             "                                ORDER BY a.start_time DESC,a.event_id DESC")
     Page<EventVo> qryEventIngForPage(Page page);
 

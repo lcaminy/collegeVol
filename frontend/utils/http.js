@@ -14,7 +14,14 @@ const http = ({ url = '', data = {}, ...other } = {}) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data)
         } else {
-          reject(res)
+            if(res.statusCode == 401){
+                wx.removeStorageSync('cookie')
+                wx.redirectTo({
+                  url: '/pages/login/login'
+                })
+            }else{
+                reject(res)
+            }
         }
       }
     })

@@ -42,6 +42,13 @@ Page({
       },
       success: (res) => {
         console.log("here act:",res.data)
+        if(res.data.statusCode == 401){
+            wx.removeStorageSync('cookie')
+            wx.redirectTo({
+              url: '/pages/login/login'
+            });
+            return;
+        }
         that.setData({
           activityList:res.data.records,
           totalPage: res.data.pages
@@ -65,6 +72,7 @@ Page({
     that.getActList()
   },
   onLoad() {
+  },onShow(){
     this.getActList()
   }
   

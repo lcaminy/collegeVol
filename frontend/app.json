@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/mine/mine",
     "pages/login/login",
     "pages/history/history",
     "pages/mine_myAct/mine_myAct",
     "pages/register/register",
-    "pages/index/index",
     "pages/actInfo/actInfo",
     "pages/mine_baseInfo/mine_baseInfo",
     "pages/mine_safeCenter/mine_safeCenter",
