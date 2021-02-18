@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="443935d1-7dd3-45bf-b8c5-a41bd81bdaf6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/collegevol/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/collegevol/Application.java" afterDir="false" />
-    </list>
+    <list default="true" id="443935d1-7dd3-45bf-b8c5-a41bd81bdaf6" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/../backend/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +139,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="55" />
     <option name="y" value="-10" />
     <option name="width" value="945" />
@@ -279,15 +277,16 @@
       <workItem from="1611415943164" duration="31000" />
       <workItem from="1612076509840" duration="1689000" />
       <workItem from="1612078262535" duration="12931000" />
-      <workItem from="1612145301497" duration="6425000" />
+      <workItem from="1612145301497" duration="7202000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23010000" />
+    <option name="totallyTimeSpent" value="23787000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2596472" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
