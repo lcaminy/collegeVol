@@ -11,7 +11,8 @@
     "pages/mine_safeCenter/mine_safeCenter",
     "pages/historyActInfo/historyActInfo",
     "pages/mine_aboutUs/mine_aboutUs",
-    "pages/mine_myAct_comment/mine_myAct_comment"
+    "pages/mine_myAct_comment/mine_myAct_comment",
+    "pages/add_act/add_act"
   ],
   "window": {
     "backgroundTextStyle": "light",

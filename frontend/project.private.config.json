@@ -1,0 +1,28 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/history/history",
+          "pathName": "pages/history/history",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/add_act/add_act",
+          "pathName": "pages/add_act/add_act",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
