@@ -1,2 +1,129 @@
-<!--pages/index.wxml-->
-<i-index></i-index>
+<view class='nav'>
+  <text class='title'>添加活动</text>
+</view>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+        <view class="weui-cells__title">活动信息</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">活动标题</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" value="{{title}}" bindinput="inputTitle"  placeholder="请输入活动标题"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">开始日期</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{startDate}}" start="2015-01-01" end="2030-01-01" bindchange="bindStartDateChange">
+                        <view class="weui-input">{{startDate}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">开始时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="time" value="{{startTime}}" start="00:00" end="24:00" bindchange="bindStartTimeChange">
+                        <view class="weui-input">{{startTime}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">结束日期</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{endDate}}" start="2015-01-01" end="2030-01-01" bindchange="bindEndDateChange">
+                        <view class="weui-input">{{endDate}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">结束时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="time" value="{{endTime}}" start="00:00" end="24:00" bindchange="bindEndTimeChange">
+                        <view class="weui-input">{{endTime}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">活动地址</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" value="{{location}}" bindinput="inputLocation" placeholder="请输入活动地址" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">活动介绍</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" value="{{description}}" bindinput="inputDescription" placeholder="请输入活动介绍" style="height: 3.3em" />
+                    <view class="weui-textarea-counter">{{descriptionCount}}/200</view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                            <view class="weui-uploader__title">活动图片上传</view>
+                            <view class="weui-uploader__info">{{files.length}}/1</view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{files}}" wx:key="*this">
+                                    <view class="weui-uploader__file weui-uploader__file_status" bindtap="previewImage" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        <view class="weui-uploader__file-content">
+                                            <block wx:if="{{uploadIng}}">{{uploadProgress}}%</block>
+                                            <block wx:if="{{!uploadIng}}">
+                                                <icon wx:if="{{!uploadSuccess}}" type="warn" size="23" color="#F43530"></icon>
+                                                <icon wx:if="{{uploadSuccess}}" type="success" size="23" color="#1AAD19"></icon>
+                                            </block>
+                                        </view>
+                                    </view>
+                                </block>
+                                <!-- <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="../../image/pic_160.png" mode="aspectFill" />
+                                </view>
+                                <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="../../image/pic_160.png" mode="aspectFill" />
+                                </view>
+                                <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="../../image/pic_160.png" mode="aspectFill" />
+                                </view>
+                                <view class="weui-uploader__file weui-uploader__file_status">
+                                    <image class="weui-uploader__img" src="../../image/pic_160.png" mode="aspectFill" />
+                                    <view class="weui-uploader__file-content">
+                                        <icon type="warn" size="23" color="#F43530"></icon>
+                                    </view>
+                                </view>
+                                <view class="weui-uploader__file weui-uploader__file_status">
+                                    <image class="weui-uploader__img" src="../../image/pic_160.png" mode="aspectFill" />
+                                    <view class="weui-uploader__file-content">50%</view>
+                                </view> -->
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="warn" bindtap="submitEvent">确定</button>
+        </view>
+    </view>
+</view>

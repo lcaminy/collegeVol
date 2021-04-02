@@ -1,17 +1,18 @@
 <!--pages/mine_myAct/mine_myAct.wxml-->
 <view class='nav'>
   <text class='title'>我的活动</text>
+  <button bindtap="addAct" class='add-btn'>添加</button>
 </view>
 <i-tabs current="{{ currentTab }}" bindchange="handleTabChange" i-class="tabs" color="#ff5a18">
   <i-tab key="activity" title="全部活动"></i-tab>
   <i-tab key="noCommentActivity" title="待评价活动"></i-tab>
 </i-tabs>
 <view class="container">
-  <view wx:if="{{activityTab}}" wx:for="{{mineAct}}" key="{{item.eventId}}" class='act-item'>
-    <view>
+  <view wx:if="{{activityTab}}" wx:for="{{mineAct}}" key="{{item.eventId}}" wx:for-index="index" class='act-item'>
+    <view bind:tap="toActInfo" data-index="{{index}}" >
       <image src="{{item.eventImgUrl}}" class="act-image"></image>
     </view>
-    <view class="act-info">
+    <view class="act-info" >
       <text class="txt act-title">{{item.title}}</text>
       <text class="txt">{{item.startTime}}</text>
       <text class="txt">{{item.endTime}}</text>

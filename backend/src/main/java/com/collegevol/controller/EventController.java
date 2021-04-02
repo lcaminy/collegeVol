@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.collegevol.entity.EventComment;
 import com.collegevol.entity.EventLike;
+import com.collegevol.entity.EventPictureSlider;
 import com.collegevol.entity.UserInfo;
 import com.collegevol.resolver.MultiRequestBody;
 import com.collegevol.service.impl.EventLikeServiceImpl;
@@ -85,9 +86,6 @@ public class EventController {
     @ResponseBody
     public ReturnData addEvent(@MultiRequestBody EventVo eventVo,
                                @MultiRequestBody MultipartFile file, HttpSession session) throws Exception {
-        File upload = new File(uploadDir + UUID.randomUUID().toString() + "." +
-                file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
-        file.transferTo(upload);
         String stuId = (String) session.getAttribute("stuId");
         UserInfo userInfo = userInfoService.selectOne(stuId);
         if (userInfo.getUserScore() < VariableParam.MIN_SCORE) {
@@ -95,10 +93,23 @@ public class EventController {
                     + VariableParam.MIN_SCORE + "分,不得报名", "");
         }
         eventVo.setUserId(userInfo.getUserId());
-        eventVo.setEventImgUrl(imageUrl + upload.getName());
+        if(file != null){
+            File upload = new File(uploadDir + UUID.randomUUID().toString() + "." +
+                file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
+            file.transferTo(upload);
+            eventVo.setEventImgUrl(imageUrl + upload.getName());
+        }
         eventVo.setStatus(EventCode.UNDER_REVIEW);
         eventService.addEvent(eventVo);
         return new ReturnData(StatusCode.SUCCESS, "添加成功", "");
+    }
+
+    @RequestMapping("/addEventImage")
+    public ReturnData add(@MultiRequestBody MultipartFile file) throws Exception {
+        File upload = new File(uploadDir + UUID.randomUUID().toString() + "." +
+            file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".") + 1));
+        file.transferTo(upload);
+        return new ReturnData(StatusCode.SUCCESS, "添加图片成功", imageUrl + upload.getName());
     }
 
 

@@ -1,138 +1,193 @@
 // pages/index.js
 let API = require('../../utils/api.js');
-let http=require('../../utils/http.js');
+let util = require('../../utils/util.js');
+let http = require('../../utils/http.js');
+let that = this;
 Page({
-  data: {
-    stuId: '',
-    name: '',
-    yuan: '',
-    userClass: '',
-    pwd1: '',
-    pwd2: '',
-    userPhone: '',
-    /*stuIdTip:'学号应为9位数',*/
-    pwd1Len: '6',
-    isSame: false,
-    stuIdLen: '9'
-  },
-  stuIdInput: function (e) {
-    this.data.stuId = e.detail.value
-  },
-  stuIdBlur: function () {
-    this.setData({
-      stuIdLen: this.data.stuId.length
-    })
-  },
-  userName(e) {
-    this.data.userName = e.detail.value
-  },
-  userSchool(e) {
-    this.data.userSchool = e.detail.value
-  },
-  userClass(e) {
-    this.data.userClass = e.detail.value
-  },
-  userPhone(e) {
-    this.data.userPhone = e.detail.value
-  },
-  pwd1Input: function (e) {
-    this.data.pwd1 = e.detail.value;
-  },
-  pwd1Blur: function () {
-    this.setData({
-      pwd1Len: this.data.pwd1.length
-    })
-  },
-  pwd2Input: function (e) {
-    this.data.pwd2 = e.detail.value;
-  },
-  pwd2Blur: function () {
-    console.log(this.data.pwd1 == this.data.pwd2)
-    if (this.data.pwd1 == this.data.pwd2) {
-      this.setData({
-        isSame: false
-      })
-    } else {
-      this.setData({
-        isSame: true
-      })
-    }
-  },
-  register() {
-    var that = this
-    console.log(that.data.stuId, that.data.userName, that.data.userClass, that.data.userSchool, that.data.pwd1, that.data.pwd2, that.data.userPhone)
-    if (!that.data.stuId || !that.data.userName || !that.data.userClass || !that.data.userSchool || !that.data.pwd1 || !that.data.pwd2 || !that.data.userPhone) {
-      wx.showModal({
-        title: '注册失败',
-        content: '信息填写不完整',
-        success(res) {
-          if (res.confirm) {
-            return
-          } else if (res.cancel) {
-            return
-          }
+    data: {
+        files: [],
+        title: "",
+        startDate: "",
+        startTime: "",
+        endDate: "",
+        endTime: "",
+        location: "",
+        description: "",
+        descriptionCount: 0
+    },
+    chooseImage() {
+        wx.chooseImage({
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            count: 1,
+            success: function (res) {
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                let files = that.data.files;
+                files[0] = res.tempFilePaths[0];
+                that.setData({
+                    files: files,
+                    uploadIng:true
+                });
+                http._uploadFile({
+                    url: '/api/addEventImage',
+                    filePath: files[0],
+                    progressFn: res => {
+                        that.setData({
+                            uploadProgress: res.progress
+                        });
+                    },
+                    successFn: data => {
+                        console.log(data);
+                        that.eventImgUrl = data.data;
+                        that.setData({
+                            files: files,
+                            uploadSuccess: true,
+                            uploadIng:false
+                        });
+                    },
+                    errorFn: data => {
+                        that.setData({
+                            uploadSuccess: false,
+                            uploadIng:false
+                        });
+                    }
+                });
+            }
+        })
+    },
+    inputTitle(e) {
+        that.setData({
+            title: e.detail.value
+        });
+    },
+    bindStartDateChange(e) {
+        that.setData({
+            startDate: e.detail.value
+        });
+    },
+    bindStartTimeChange(e) {
+        that.setData({
+            startTime: e.detail.value
+        });
+    },
+    bindEndDateChange(e) {
+        that.setData({
+            endDate: e.detail.value
+        });
+    },
+    bindEndTimeChange(e) {
+        that.setData({
+            endTime: e.detail.value
+        });
+    },
+    inputLocation(e) {
+        that.setData({
+            location: e.detail.value
+        });
+    },
+    inputDescription(e) {
+        that.setData({
+            description: e.detail.value,
+            descriptionCount: e.detail.value.length
+        });
+    },
+    submitEvent() {
+        if (that.checkValueError(that.data.title, "活动标题不能为空！") ||
+            that.checkValueError(that.data.location, "活动地址不能为空！") ||
+            that.checkValueError(that.data.description, "活动介绍不能为空！") ||
+            that.checkValueError(that.eventImgUrl, "活动图片未上传！") ||
+            that.checkValueError(that.data.startDate, "活动开始日期不能为空！") ||
+            that.checkValueError(that.data.startTime, "活动开始时间不能为空！") ||
+            that.checkValueError(that.data.endDate, "活动结束日期不能为空！") ||
+            that.checkValueError(that.data.endTime, "活动结束时间不能为空！")) {
+            return;
         }
-      })
-    }
-    else if (that.data.pwd1 != that.data.pwd2) {
-      that.setData({
-        isSame: true
-      })
-      return
-    }
-    else {
-      console.log("123");
-      //获得用户头像放入数据库
-          //获得微信头像更新后端
-          wx.request({
-            url: API.BASE_URL + '/api/user/register',
+        let startTime = util.timeFormat(that.data.startDate + " " + that.data.startTime);
+        let endTime = util.timeFormat(that.data.endDate + " " + that.data.endTime);
+        if (that.checkValueError(startTime > endTime, "活动开始时间必须小于活动结束时间！")) {
+            return;
+        }
+
+
+        wx.request({
+            url: API.BASE_URL + '/api/addEvent',
             method: 'POST',
             header: {
-              'content-type': 'application/json',
-              'cookie': wx.getStorageSync('cookie') //请求带cookie
+                'content-type': 'application/json',
+                'cookie': wx.getStorageSync('cookie') //请求带cookie
             },
             data: {
-              stuId: that.data.stuId,
-              userName: that.data.userName,
-              userClass: that.data.userClass,
-              userPhone: that.data.userPhone,
-              userSchool: that.data.userSchool,
-              password: that.data.pwd1,
-              role:0
-             
+                startTime: that.data.startDate + " " + that.data.startTime + ":00",
+                endTime: that.data.endDate + " " + that.data.endTime + ":00",
+                title: that.data.title,
+                location: that.data.location,
+                description: that.data.description,
+                supplyName: "个人用户",
+                eventScore: 1,
+                maxnum: 10,
+                tags: "",
+                eventImgUrl: that.eventImgUrl
             },
             success: (res) => {
-              console.log(res)
-              if (res.data.statusCode === 200) {
-                wx.showModal({
-                  content: res.data.msg,
-                  success(res) {
-                    if (res.confirm) {
-                      wx.redirectTo({
-                        url: '/pages/login/login',
-                      })
-                    } else if (res.cancel) {
-                      wx.redirectTo({
-                        url: '/pages/login/login',
-                      })
-                    }
-                  }
-                })
-              }
-              else if (res.data.statusCode === 500) {
-                wx.showModal({
-                  content: res.data.msg,
-                  success(res) {
-                    if (res.confirm) {
-                      return
-                    } else if (res.cancel) {
-                      return
-                    }
-                  }
-                })
-              }
+                console.log(res)
+                if (res.data.statusCode === 401) {
+                    wx.showModal({
+                        content: res.data.msg,
+                        success(res) {
+                            if (res.confirm) {
+                                wx.redirectTo({
+                                    url: '/pages/login/login',
+                                })
+                            } else if (res.cancel) {
+                                wx.redirectTo({
+                                    url: '/pages/login/login',
+                                })
+                            }
+                        }
+                    })
+                } else if (res.data.statusCode === 500) {
+                    wx.showModal({
+                        content: res.data.msg,
+                        success(res) {
+                            if (res.confirm) {
+                                return
+                            } else if (res.cancel) {
+                                return
+                            }
+                        }
+                    })
+                }else if(res.data.statusCode === 200){
+                    wx.showModal({
+                        content: res.data.msg,
+                        showCancel:false,
+                        success(res) {
+                            if (res.confirm) {
+                                wx.navigateBack();
+                                return
+                            }
+                        }
+                    })
+                }
             }
-          })
+        })
+    },
+    checkValueError(value, errorMsg) {
+        if (value === true || (typeof value == "string" && (value == null || value == "" || value.length == 0))) {
+            that.setData({
+                errorMsg: errorMsg,
+                showTopTips: true
+            });
+            let showErrorT = setTimeout(() => {
+                that.setData({
+                    showTopTips: false
+                });
+                clearTimeout(showErrorT);
+            }, 3000);
+            return true;
+        }
+        return false;
+    },
+    onLoad() {
+        that = this;
     }
-  }
 })
